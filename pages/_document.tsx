@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-css-tags */
 /* eslint-disable @next/next/no-page-custom-font */
 // pages/_document.js
-import Document, { Main, Head, NextScript } from 'next/document';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class CustomHead extends Head {
 	render() {
@@ -85,11 +85,11 @@ class StaticDocument extends Document {
 		const { __NEXT_DATA__ } = this.props;
 
 		return (
-			<html
+			<Html
 				style={{
 					margin: '0',
 					padding: '0',
-					minWidth: '100%',
+					width: '100%',
 				}}
 			>
 				{process.env.NODE_ENV === 'production' ? <CustomHead /> : <Head />}
@@ -97,27 +97,29 @@ class StaticDocument extends Document {
 					style={{
 						margin: '0',
 						padding: '0',
-						minWidth: '100%',
+						width: '100%',
 					}}
 				>
 					<Main />
-					{process.env.NODE_ENV === 'production' &&
-					!pagesWithoutReact.includes(__NEXT_DATA__.page) ? (
-						<NextScript />
-					) : (
-						<NextScript />
-					)}
+					<NextScript />
+					{/* {
+						// process.env.NODE_ENV === 'production' &&
+						!pagesWithoutReact.includes(__NEXT_DATA__.page) && <NextScript />
+					} */}
 					{/* <NextScript>
 						<script>{JSON.stringify(__NEXT_DATA__)}</script>
 					</NextScript> */}
 				</body>
-			</html>
+			</Html>
 		);
 	}
 }
+// ---------------------------------------------------
+export default StaticDocument;
+// ---------------------------------------------------
 
-// ---------------------------------------------------
-export default process.env.NODE_ENV === 'production'
-	? StaticDocument
-	: Document;
-// ---------------------------------------------------
+// // ---------------------------------------------------
+// export default process.env.NODE_ENV === 'production'
+// 	? StaticDocument
+// 	: Document;
+// // ---------------------------------------------------
