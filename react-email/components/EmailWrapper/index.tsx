@@ -13,7 +13,7 @@ const EmailWrapper: FC<{ children?: ReactNode }> = ({ children }) => {
 				background-color: white !important;
 			}
 			.container {
-				background-color: #06130e !important;
+				background-color: rgb(2, 8, 8) !important !important;
 			}
 		}
 		@media only screen and (min-width: 960px) {
