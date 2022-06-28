@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<link rel='icon' href='./favicon.ico' />
 				<title>Create Next App</title>
 			</Head>
-			<Component {...pageProps} />;
+			<Component {...pageProps} />
 		</>
 	);
 }

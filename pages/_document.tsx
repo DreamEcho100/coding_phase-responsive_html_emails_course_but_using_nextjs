@@ -82,7 +82,7 @@ class CustomHead extends Head {
 const pagesWithoutReact = ['/'];
 class StaticDocument extends Document {
 	render() {
-		const { __NEXT_DATA__ } = this.props;
+		// const { __NEXT_DATA__ } = this.props;
 
 		return (
 			<Html

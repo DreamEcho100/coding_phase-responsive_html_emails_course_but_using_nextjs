@@ -369,11 +369,188 @@ const LetsYouRow = () => {
 	);
 };
 
+const AdvanceRow = () => {
+	return (
+		<Table
+			className='advance-table'
+			width='100%'
+			style={{
+				padding: '15px 15px 70px',
+			}}
+			trs
+		>
+			<td
+				style={{
+					padding: '36px 0 5px',
+				}}
+				align='center'
+			>
+				<Image
+					src='./images/image_head.jpg'
+					alt='image head'
+					className='model with apple watch image_head'
+				/>
+			</td>
+			<td align='center'>
+				<h3
+					style={{
+						color: '#333333',
+						padding: '25px 0 5px 0',
+						fontWeight: 300,
+						textTransform: 'capitalize',
+						fontSize: 24,
+						margin: 0,
+					}}
+				>
+					World&apos;s
+					<span
+						style={{
+							fontWeight: 400,
+						}}
+					>
+						most advanced App
+					</span>
+					<br />
+					with High-Tech solutions
+				</h3>
+			</td>
+			<td>
+				<Table
+					className='left-column column'
+					width='50%'
+					style={{ padding: '15px 15px 70px 15px' }}
+					align='left'
+				>
+					<tr className='text-holder'>
+						<td>
+							<Paragraph
+								style={{
+									color: '#7f8887',
+									fontWeight: 400,
+									lineHeight: 1.8,
+									fontSize: 14,
+									padding: '0 0 30px',
+								}}
+							>
+								The Strong museum has collected more than 55,000 video games and
+								related artifacts from the history of gaming.
+							</Paragraph>
+						</td>
+					</tr>
+					<tr className='left-store store' style={{ textAlign: 'right' }}>
+						<td>
+							<Image src='./images/appstore.png' alt='logo of apple appstore' />
+						</td>
+					</tr>
+				</Table>
+				<Table
+					className='right-column column'
+					width='50%'
+					style={{
+						padding: '15px 15px 70px',
+					}}
+					align='right'
+				>
+					<tr className='text-holder'>
+						<td>
+							<Paragraph
+								style={{
+									color: '#7f8887',
+									fontWeight: 400,
+									lineHeight: 1.8,
+									fontSize: 14,
+									padding: '0 0 30px',
+								}}
+							>
+								The Strong museum has collected more than 55,000 video games and
+								related artifacts from the history of gaming.
+							</Paragraph>
+						</td>
+					</tr>
+					<tr className='right-store store' style={{ textAlign: 'left' }}>
+						<td>
+							<Image
+								src='./images/playstore.png'
+								alt='logo for android playstore'
+							/>
+						</td>
+					</tr>
+				</Table>
+			</td>
+			<style global jsx>{`
+				@media only screen and (min-width: 960px) {
+					.advance-table {
+						padding: 15px 50px 70px;
+					}
+				}
+
+				@media only screen and (max-width: 600px) {
+					.image_head {
+						width: 100%;
+					}
+
+					.column {
+						width: 100%;
+						text-align: center;
+						padding: 25px 5px 5px !important;
+					}
+
+					.column .store {
+						text-align: center !important;
+					}
+
+					.column .text-holder p {
+						margin: 10px 0 15px !important;
+					}
+				}
+			`}</style>
+		</Table>
+	);
+};
+
+const OneSolutionRow = () => {
+	return (
+		<Table
+			className='one-solution-table'
+			width='100%'
+			align='left'
+			style={{
+				padding: '50px 0',
+				backgroundColor: '#141414',
+			}}
+			tr
+		>
+			<td>
+				<Image
+					src='./images/one_app.jpg'
+					alt='information for application'
+					style={{
+						width: '100%',
+					}}
+				/>
+			</td>
+			<style global jsx>{`
+				@media only screen and (min-width: 960px) {
+					.one-solution-table {
+						text-align: center;
+					}
+
+					.one-solution-table img {
+						max-width: 611px;
+					}
+				}
+			`}</style>
+		</Table>
+	);
+};
+
 const Home: NextPage = () => {
 	return (
 		<EmailWrapper>
 			<MainHeaderRow />
 			<LetsYouRow />
+			<AdvanceRow />
+			<OneSolutionRow />
 		</EmailWrapper>
 	);
 };
