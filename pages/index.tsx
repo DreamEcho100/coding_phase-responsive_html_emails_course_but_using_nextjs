@@ -185,6 +185,7 @@ const LetsYouRow = () => {
 			style={{
 				...backgroundColorSpecial,
 				color: '#333333',
+				padding: '0 15px',
 			}}
 		>
 			<td align='center'>
@@ -271,63 +272,54 @@ const LetsYouRow = () => {
 						style={{
 							padding: '15px 15px 70px 15px',
 						}}
+						trs
 					>
-						<tr>
-							<td>
-								<Table
-									align='left'
-									className='title-icon'
-									style={{ padding: 0 }}
-								>
-									<tr>
-										<td className='icon-holder'>
-											<Image src={header.icon.src} alt={header.icon.alt} />
-										</td>
-										<td
-											className='text-holder'
-											style={{
-												padding: ' 0 0 0 15px',
-												fontWeight: 600,
-												textTransform: 'uppercase',
-												fontSize: 14,
-											}}
-										>
-											{header.text}
-										</td>
-									</tr>
-								</Table>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<p
-									style={{
-										color: '#7f8887',
-										fontWeight: 400,
-										lineHeight: 1.8,
-										fontSize: 14,
-										marginTop: 0,
-									}}
-								>
-									{body.paragraph}
-								</p>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<a
-									href={body.link.href}
-									style={{
-										color: '#2792ec',
-										textDecoration: 'none',
-										fontWeight: 600,
-										fontSize: 14,
-									}}
-								>
-									{body.link.text}
-								</a>
-							</td>
-						</tr>
+						<td>
+							<Table align='left' className='title-icon' style={{ padding: 0 }}>
+								<tr>
+									<td className='icon-holder'>
+										<Image src={header.icon.src} alt={header.icon.alt} />
+									</td>
+									<td
+										className='text-holder'
+										style={{
+											padding: ' 0 0 0 15px',
+											fontWeight: 600,
+											textTransform: 'uppercase',
+											fontSize: 14,
+										}}
+									>
+										{header.text}
+									</td>
+								</tr>
+							</Table>
+						</td>
+						<td>
+							<p
+								style={{
+									color: '#7f8887',
+									fontWeight: 400,
+									lineHeight: 1.8,
+									fontSize: 14,
+									marginTop: 0,
+								}}
+							>
+								{body.paragraph}
+							</p>
+						</td>
+						<td>
+							<a
+								href={body.link.href}
+								style={{
+									color: '#2792ec',
+									textDecoration: 'none',
+									fontWeight: 600,
+									fontSize: 14,
+								}}
+							>
+								{body.link.text}
+							</a>
+						</td>
 					</Table>
 				))}
 			</td>
@@ -335,7 +327,7 @@ const LetsYouRow = () => {
 				@media (prefers-color-scheme: dark) {
 					.lets-you-row {
 						color: white !important;
-						background-color: #100a0a !important;
+						background-color: #141414 !important;
 					}
 				}
 				@media only screen and (min-width: 960px) {
@@ -344,10 +336,13 @@ const LetsYouRow = () => {
 					}
 				}
 				@media only screen and (max-width: 600px) {
+					.lets-you-row {
+						padding: 0 !important;
+					}
 					.lets-you-row .row-section-header {
 						padding: 0 !important;
 						margin: 40px 40px 10px 40px !important;
-						font-weight: 500 !important;
+						fontweight: 500 !important;
 					}
 					.lets-you-row .column {
 						width: 100%;
@@ -391,7 +386,7 @@ const AdvanceRow = () => {
 					className='model with apple watch image_head'
 				/>
 			</td>
-			<td align='center'>
+			<td align='center' className='header-text'>
 				<h3
 					style={{
 						color: '#333333',
@@ -503,6 +498,11 @@ const AdvanceRow = () => {
 						margin: 10px 0 15px !important;
 					}
 				}
+				@media (prefers-color-scheme: dark) {
+					.header-text h3 {
+						color: white !important;
+					}
+				}
 			`}</style>
 		</Table>
 	);
@@ -544,6 +544,311 @@ const OneSolutionRow = () => {
 	);
 };
 
+const JoinTogetherRow = () => {
+	return (
+		<Table
+			className='join-together-table'
+			width='100%'
+			align='left'
+			style={{ padding: '25px 5px 75px' }}
+			trs
+		>
+			<td align='center' className='header'>
+				<h3
+					style={{
+						color: '#333333',
+						padding: '36px 0 5px',
+						fontWeight: 300,
+						textTransform: 'capitalize',
+						fontSize: 24,
+					}}
+				>
+					Features
+					<span style={{ fontWeight: 600 }}>All Joined Together</span>
+					in One App
+				</h3>
+			</td>
+			<td className='body'>
+				{[
+					{
+						table: {
+							className: 'left-column',
+						},
+						image: {
+							src: './images/watch_screen.png',
+							alt: 'image of watch screen',
+						},
+						h5: {
+							text: 'Sync',
+						},
+						link: {
+							href: '#',
+							text: 'Learn More',
+						},
+					},
+					{
+						table: {
+							className: 'middle-column',
+						},
+						image: {
+							src: './images/watch_screen.png',
+							alt: 'image of watch screen',
+						},
+						h5: {
+							text: 'SHARE',
+						},
+						link: {
+							href: '#',
+							text: 'Learn More',
+						},
+					},
+					{
+						table: {
+							className: 'right-column',
+						},
+						image: {
+							src: './images/watch_screen.png',
+							alt: 'image of watch screen',
+						},
+						h5: {
+							text: 'STATS',
+						},
+						link: {
+							href: '#',
+							text: 'Learn More',
+						},
+					},
+				].map(({ table, image, h5, link }, index) => (
+					<Table
+						key={index}
+						className={`${table} column`}
+						width='33.33%'
+						align='left'
+						style={{ padding: '20px 0' }}
+						trs
+					>
+						<td align='center'>
+							<Image src={image.src} alt={image.alt} />
+						</td>
+						<td align='center'>
+							<h5
+								style={{
+									color: '#333333',
+									padding: '15px 0 5px',
+									fontWeight: 600,
+									textTransform: 'uppercase',
+									fontSize: 14,
+									margin: 0,
+								}}
+							>
+								{h5.text}
+							</h5>
+						</td>
+						<td align='center'>
+							<Paragraph
+								style={{
+									color: '#7f8887',
+									fontWeight: 400,
+									lineHeight: 1.8,
+									fontSize: 14,
+									padding: '0 0 15px',
+								}}
+							>
+								Computer manufacturer Lenovo is getting flak.
+							</Paragraph>
+						</td>
+						<td align='center'>
+							<Link
+								href={link.href}
+								style={{
+									color: '#2792ec',
+									fontWeight: 600,
+									fontSize: 14,
+								}}
+							>
+								{link.text}
+							</Link>
+						</td>
+					</Table>
+				))}
+			</td>
+			<style global jsx>{`
+				@media (prefers-color-scheme: dark) {
+					.header h3 {
+						color: white !important;
+					}
+					.body h5 {
+						color: white !important;
+					}
+				}
+			`}</style>
+		</Table>
+	);
+};
+
+const DetailRow = () => {
+	return (
+		<Table width='600' className='container' tr>
+			<td>
+				<Table
+					className='detail-table'
+					width='100%'
+					align='left'
+					style={{
+						padding: '50px 5px 25px',
+					}}
+					trs
+				>
+					{[
+						[
+							{
+								header: {
+									icon: {
+										src: './images/phone_icon.png',
+										alt: 'icon of phone',
+									},
+									text: 'RESPONSIVE LAYOUT',
+								},
+								body: {
+									text: "Tanjin is one of nearly 2,000 people to have landed on Italy's southernmost.",
+								},
+							},
+							{
+								header: {
+									icon: {
+										src: './images/retina_icon.png',
+										alt: 'icon of retina screens',
+									},
+									text: 'RETINA READY',
+								},
+								body: {
+									text: "Tanjin is one of nearly 2,000 people to have landed on Italy's southernmost.",
+								},
+							},
+						],
+						[
+							{
+								header: {
+									icon: {
+										src: './images/check_icon.png',
+										alt: 'icon of check',
+									},
+									text: 'VARIOUS SKINS',
+								},
+								body: {
+									text: "Tanjin is one of nearly 2,000 people to have landed on Italy's southernmost.",
+								},
+							},
+							{
+								header: {
+									icon: {
+										src: './images/settings_icon.png',
+										alt: 'icon of settings',
+									},
+									text: 'GREAT PERFORMANCE',
+								},
+								body: {
+									text: "Tanjin is one of nearly 2,000 people to have landed on Italy's southernmost.",
+								},
+							},
+						],
+						[
+							{
+								header: {
+									icon: {
+										src: './images/menu_icon.png',
+										alt: 'icon of menu',
+									},
+									text: 'USER FRIENDLY MENUS',
+								},
+								body: {
+									text: "Tanjin is one of nearly 2,000 people to have landed on Italy's southernmost.",
+								},
+							},
+							{
+								header: {
+									icon: {
+										src: './images/share_icon.png',
+										alt: 'icon of retina sharing',
+									},
+									text: 'SOCIAL SHARE',
+								},
+								body: {
+									text: "Tanjin is one of nearly 2,000 people to have landed on Italy's southernmost.",
+								},
+							},
+						],
+					].map((item, index) => (
+						<td key={index}>
+							<Table className='one-row-table' width='100%' align='left' tr>
+								{item.map(({ header, body }, index) => (
+									<td
+										className={index === 0 ? 'left-column' : 'right-column'}
+										key={index}
+									>
+										<Table
+											align='left'
+											style={{ padding: '0px 15px 20px' }}
+											trs
+										>
+											<td>
+												<Table
+													className='icon-table'
+													width='100%'
+													align='left'
+													tr
+												>
+													<td>
+														<Image
+															src={header.icon.src}
+															alt={header.icon.alt}
+														/>
+													</td>
+													<td
+														style={{
+															color: '#333333',
+															padding: '0 0 0 15px',
+															fontWeight: 600,
+															textTransform: 'uppercase',
+															fontSize: 14,
+														}}
+														className='header-text'
+													>
+														{header.text}
+													</td>
+												</Table>
+											</td>
+											<td>
+												<Paragraph
+													style={{
+														color: '#7f8887',
+														fontWeight: 400,
+														lineHeight: 1.8,
+														fontSize: 14,
+													}}
+												>
+													{body.text}
+												</Paragraph>
+											</td>
+										</Table>
+									</td>
+								))}
+							</Table>
+						</td>
+					))}
+				</Table>
+			</td>
+			<style global jsx>{`
+				@media (prefers-color-scheme: dark) {
+					.one-row-table .header-text {
+						color: white !important;
+					}
+				}
+			`}</style>
+		</Table>
+	);
+};
+
 const Home: NextPage = () => {
 	return (
 		<EmailWrapper>
@@ -551,6 +856,8 @@ const Home: NextPage = () => {
 			<LetsYouRow />
 			<AdvanceRow />
 			<OneSolutionRow />
+			<JoinTogetherRow />
+			<DetailRow />
 		</EmailWrapper>
 	);
 };
