@@ -30,7 +30,7 @@ const fontFamily1 = {
 const MainHeaderRowHeaderLeft = () => {
 	return (
 		<Table
-			className='header-left'
+			className='main-header-left'
 			align='left'
 			width='50%'
 			style={{
@@ -97,12 +97,12 @@ const MainHeaderRowHeaderLeft = () => {
 			</td>
 			<style global jsx>{`
 				@media only screen and (min-width: 960px) {
-					.header-left {
+					.main-header-left {
 						padding: 36px 50px 70px !important;
 					}
 				}
 				@media only screen and (max-width: 600px) {
-					.header-left {
+					.main-header-left {
 						width: 100%;
 					}
 				}
@@ -112,7 +112,7 @@ const MainHeaderRowHeaderLeft = () => {
 };
 const MainHeaderRowHeaderRight = () => {
 	return (
-		<Table className='header-right' align='right' width='50%' trs>
+		<Table className='main-header-right' align='right' width='50%' trs>
 			<td>
 				<Table
 					width='100%'
@@ -154,12 +154,12 @@ const MainHeaderRowHeaderRight = () => {
 			</td>
 			<style global jsx>{`
 				@media (prefers-color-scheme: dark) {
-					.header {
+					.main-header-right .header {
 						color: white !important;
 					}
 				}
 				@media only screen and (max-width: 600px) {
-					.header-right {
+					.main-header-right {
 						width: 100%;
 					}
 				}
@@ -308,7 +308,7 @@ const LetsYouRow = () => {
 							</p>
 						</td>
 						<td>
-							<a
+							<Link
 								href={body.link.href}
 								style={{
 									color: '#2792ec',
@@ -318,7 +318,7 @@ const LetsYouRow = () => {
 								}}
 							>
 								{body.link.text}
-							</a>
+							</Link>
 						</td>
 					</Table>
 				))}
@@ -480,26 +480,26 @@ const AdvanceRow = () => {
 				}
 
 				@media only screen and (max-width: 600px) {
-					.image_head {
+					.advance-table .image_head {
 						width: 100%;
 					}
 
-					.column {
+					.advance-table .column {
 						width: 100%;
 						text-align: center;
 						padding: 25px 5px 5px !important;
 					}
 
-					.column .store {
+					.advance-table .column .store {
 						text-align: center !important;
 					}
 
-					.column .text-holder p {
+					.advance-table .column .text-holder p {
 						margin: 10px 0 15px !important;
 					}
 				}
 				@media (prefers-color-scheme: dark) {
-					.header-text h3 {
+					.advance-table .header-text h3 {
 						color: white !important;
 					}
 				}
@@ -674,11 +674,22 @@ const JoinTogetherRow = () => {
 			</td>
 			<style global jsx>{`
 				@media (prefers-color-scheme: dark) {
-					.header h3 {
+					.join-together-table .header h3 {
 						color: white !important;
 					}
-					.body h5 {
+					.join-together-table .body h5 {
 						color: white !important;
+					}
+				}
+				@media only screen and (min-width: 960px) {
+					.join-together-table .column {
+						padding: 25px 50px !important;
+					}
+				}
+				@media only screen and (max-width: 600px) {
+					.join-together-table .column {
+						width: 100%;
+						padding: 25px 50px !important;
 					}
 				}
 			`}</style>
@@ -840,7 +851,193 @@ const DetailRow = () => {
 			</td>
 			<style global jsx>{`
 				@media (prefers-color-scheme: dark) {
-					.one-row-table .header-text {
+					.detail-table .one-row-table .header-text {
+						color: white !important;
+					}
+				}
+				@media only screen and (min-width: 960px) {
+					.detail-table {
+						padding: 50px 50px 25px !important;
+					}
+				}
+				@media only screen and (max-width: 600px) {
+					.detail-table {
+						padding: 0 !important;
+					}
+					.detail-table .one-row-table .left-column {
+						float: left;
+						width: 100%;
+					}
+					.detail-table .one-row-table .right-column {
+						float: right;
+						width: 100%;
+					}
+
+					.detail-table .icon-table img {
+						width: 40px !important;
+						height: 40px !important;
+					}
+				}
+			`}</style>
+		</Table>
+	);
+};
+
+const InterestRow = () => {
+	return (
+		<Table
+			className='interest-table'
+			width='100%'
+			align='left'
+			style={{
+				padding: '75px 0',
+				...backgroundColorImageSpecial,
+			}}
+			tr
+		>
+			<td align='center'>
+				<h3
+					style={{
+						color: 'white',
+						padding: '0 0 35px',
+						margin: 0,
+						fontWeight: 300,
+						textTransform: 'capitalize',
+						fontSize: 24,
+					}}
+				>
+					Interested in our App?
+				</h3>
+				<Paragraph
+					style={{
+						fontStyle: 'italic',
+						fontSize: 14,
+						lineHeight: 1.5,
+						padding: '0 0 50px',
+						maxWidth: 400,
+						color: 'white',
+					}}
+				>
+					Muriel Bowser’s administration says move is unrelated to charges that
+					encryption caused failures in Metro.
+				</Paragraph>
+				<Link
+					href='#'
+					style={{
+						borderRadius: 2,
+						border: '2px solid white',
+						padding: '7px 13px',
+						textDecoration: 'none',
+						color: 'white',
+						textTransform: 'uppercase',
+						fontSize: 12,
+						fontWeight: 600,
+					}}
+				>
+					request a quote
+				</Link>
+			</td>
+		</Table>
+	);
+};
+
+const FooterRow = () => {
+	return (
+		<Table
+			className='footer-table'
+			width='100%'
+			align='left'
+			style={{
+				padding: '25px 0 0',
+			}}
+		>
+			<tr>
+				<td align='center' className='header'>
+					<h2
+						style={{
+							fontWeight: 700,
+							color: '#1b1b1b',
+							textTransform: 'uppercase',
+							fontSize: 28,
+						}}
+					>
+						Hero
+					</h2>
+				</td>
+			</tr>
+			<tr>
+				<td align='center'>
+					<Table
+						className='icon-table'
+						align='center'
+						width='250px'
+						// style
+						tr
+					>
+						<td align='center'>
+							<Link href='http://www.twitter.com/'>
+								<Image src='./images/twitter_icon.png' alt='twitter.com icon' />
+							</Link>
+						</td>
+						<td align='center'>
+							<Link href='http://www.facebook.com/'>
+								<Image
+									src='./images/facebook_icon.png'
+									alt='facebook.com icon'
+								/>
+							</Link>
+						</td>
+						<td align='center'>
+							<Link href='http://www.google.com/'>
+								<Image src='./images/google_icon.png' alt='google.com icon' />
+							</Link>
+						</td>
+						<td align='center'>
+							<Link href='http://www.pinterest.com/'>
+								<Image
+									src='./images/pinterest_icon.png'
+									alt='pinterest.com icon'
+								/>
+							</Link>
+						</td>
+						<td align='center'>
+							<Link href='http://www.linkedin.com/'>
+								<Image
+									src='./images/linkedin_icon.png'
+									alt='linkedin.com icon'
+								/>
+							</Link>
+						</td>
+						<td align='center'>
+							<Link href='http://www.youtube.com/'>
+								<Image src='./images/youtube_icon.png' alt='youtube.com icon' />
+							</Link>
+						</td>
+					</Table>
+				</td>
+			</tr>
+			<tr>
+				<td align='center'>
+					<p
+						style={{
+							padding: '20px 0',
+							color: '#b4b4b4',
+							fontWeight: 400,
+							lineHeight: 1.8,
+							fontSize: 10,
+						}}
+					>
+						&copy; 20XX All rights Reserved - YourCompany. Is your inbox
+						overflowing?
+						<Link href='#' style={{ color: '#2792ec' }}>
+							Unsubscribe
+						</Link>
+					</p>
+				</td>
+			</tr>
+			<style global jsx>{`
+				@media (prefers-color-scheme: dark) {
+					.footer-table .header h2 {
 						color: white !important;
 					}
 				}
@@ -858,6 +1055,8 @@ const Home: NextPage = () => {
 			<OneSolutionRow />
 			<JoinTogetherRow />
 			<DetailRow />
+			<InterestRow />
+			<FooterRow />
 		</EmailWrapper>
 	);
 };

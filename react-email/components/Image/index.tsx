@@ -5,7 +5,8 @@ interface IImage extends ImgHTMLAttributes<HTMLImageElement> {
 }
 const Image: FC<IImage> = ({ src, style, ...props }) => {
 	const imageStyles: CSSProperties = {
-		maxWidth: '100%',
+		padding: 0,
+		margin: 0,
 		...(style || {}),
 	};
 	return (
