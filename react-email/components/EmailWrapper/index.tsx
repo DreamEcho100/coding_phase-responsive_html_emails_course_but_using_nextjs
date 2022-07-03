@@ -1,6 +1,9 @@
 import { FC, ReactNode } from 'react';
 import Table from '../Table';
 import css from 'styled-jsx/css';
+import { SharedConfigProvider } from '../../context';
+import Td from '../Td';
+import HTMLComment from '../HTMLComment';
 
 const EmailWrapper: FC<{ children?: ReactNode }> = ({ children }) => {
 	const globalStyles = css.global`
@@ -13,7 +16,7 @@ const EmailWrapper: FC<{ children?: ReactNode }> = ({ children }) => {
 				background-color: white !important;
 			}
 			.container {
-				background-color: rgb(2, 8, 8) !important !important;
+				background-color: rgb(2, 8, 8) !important;
 			}
 		}
 		@media only screen and (min-width: 960px) {
@@ -34,10 +37,30 @@ const EmailWrapper: FC<{ children?: ReactNode }> = ({ children }) => {
 	`;
 
 	return (
-		<>
-			<style jsx global>
+		<SharedConfigProvider>
+			<style global jsx>
 				{globalStyles}
 			</style>
+			{[
+				`[if (gte mso 9)|(IE)]>
+					<style type="text/css">
+						 table {border-collapse: collapse!important;}
+					</style>
+			 <![endif]`,
+				`[if (gte mso 9)|(IE)]>
+			 <style type="text/css">
+					body {background-color:#dde0e1!important;}
+					body, table, td, p, a {font-family: sans-serif, Arial, Helvetica!important;}
+			 </style>
+		<![endif]`,
+				`[if (gte mso 9)|(IE)]>
+				<table width="600" align="center" style="border-spacing:0;color:#565656;" role="presentation">
+				<tr>
+				<td style="padding:0;">
+ <![endif]`,
+			].map((statement, index) => (
+				<HTMLComment key={index} statement={statement} removeExtraSpaces />
+			))}
 			<Table
 				width='100%'
 				style={{
@@ -45,24 +68,30 @@ const EmailWrapper: FC<{ children?: ReactNode }> = ({ children }) => {
 					fontFamily:
 						"'Open Sans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif",
 				}}
-				tr
 				className='wrapper'
 			>
-				<td align='center'>
+				<Td align='center'>
 					<Table
 						key={2}
 						style={{
 							backgroundColor: 'white',
 						}}
 						width='600'
-						tr
 						className='container'
 					>
-						<td align='center'>{children}</td>
+						<Td align='center'>{children}</Td>
 					</Table>
-				</td>
+				</Td>
 			</Table>
-		</>
+			<HTMLComment
+				statement={`[if (gte mso 9)|(IE)]>
+						</td>
+						</tr>
+						</table>
+						<![endif]`}
+				removeExtraSpaces
+			/>
+		</SharedConfigProvider>
 	);
 };
 

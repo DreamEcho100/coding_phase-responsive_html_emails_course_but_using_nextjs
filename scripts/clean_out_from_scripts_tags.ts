@@ -3,12 +3,27 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import cheerio from 'cheerio';
+import { isText } from 'domhandler';
 
 export const cleanOutFromScriptsTags = async () => {
 	try {
 		const targetPath = path.join(__dirname, '../out/index.html');
 		await fs.readFile(targetPath, { encoding: 'utf8' }, (err, data) => {
 			if (err) throw err.message;
+
+			const comments: string[] = [];
+			let toReplaceWithHtmlCommentOnBuildCounter = 0;
+
+			(() => {
+				const $ = cheerio.load(data);
+				const elements = $('.to-replace-with-its-content-on-build');
+				elements.each((index) => {
+					if (isText(elements[index].children[0])) {
+						comments.push((elements[index].children[0] as any).data);
+					}
+				});
+			})();
 
 			const styles: string[] = [];
 			let modifiedData = data
@@ -17,14 +32,16 @@ export const cleanOutFromScriptsTags = async () => {
 					'<!DOCTYPE htmlPUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'
 				)
 				.replace('<html', '<html xmlns="http://www.w3.org/1999/xhtml" ')
-				// .replace(/cellSpacing/g, 'cellspacing')
-				// .replace(/cellPadding/g, 'cellpadding')
-				// .replace(/charSet/g, 'charset')
 				.replace(/<\s*script[^>]*>(.*?)<\s*\/\s*script>/g, '')
 				.replace(
-					/<\s*style[^>]*>(.*?)<\s*\/\s*style>/g,
+					// 	/<\s*style[^>]*>(.*?)<\s*\/\s*style>/g,
+					/<\s*script[^>]*>(.*?<\s*\/\s*script>|<!--[^]*--><\s*\/\s*script>)/gs,
 					(match, offset, string) => {
-						styles.push(match);
+						if (/to-replace-with-its-content-on-build/.test(match)) {
+							toReplaceWithHtmlCommentOnBuildCounter++;
+							return comments[toReplaceWithHtmlCommentOnBuildCounter - 1];
+						}
+
 						return '';
 					}
 				);
@@ -53,17 +70,10 @@ export const cleanOutFromScriptsTags = async () => {
 
 			modifiedData = modifiedDataArr.join(' ');
 
-			// const headTagEndsIndex = modifiedData.search('</head>');
-
-			// modifiedData =
-			// 	modifiedData.slice(0, headTagEndsIndex) +
-			// 	styles.join('') +
-			// 	modifiedData.slice(headTagEndsIndex, modifiedData.length);
-
 			fs.writeFileSync(targetPath, modifiedData);
 		});
 	} catch (err) {
-		console.log(err instanceof Error && err.message);
+		err instanceof Error && console.error(err.message);
 	}
 };
 

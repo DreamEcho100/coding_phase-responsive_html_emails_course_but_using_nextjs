@@ -1,10 +1,5 @@
-import {
-	EmailWrapper,
-	Image,
-	Link,
-	Paragraph,
-	Table,
-} from '@reactEmail/components';
+import { EmailWrapper, Img, A, P, Table, Td } from '@reactEmail/components';
+import HTMLComment from '@reactEmail/components/HTMLComment';
 import type { NextPage } from 'next';
 
 // import EmailWrapper from '@reactEmail/components';
@@ -27,168 +22,198 @@ const fontFamily1 = {
 		"'Open Sans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif",
 };
 
-const MainHeaderRowHeaderLeft = () => {
-	return (
-		<Table
-			className='main-header-left'
-			align='left'
-			width='50%'
-			style={{
-				padding: '15px 15px 70px 15px',
-				...backgroundColorImageSpecial,
-			}}
-			tr
-		>
-			<td
-				style={{
-					color: 'white',
-					...fontFamily1,
-				}}
-			>
-				<Image src='./images/logo.png' alt='logo' />
-				<h2
-					style={{
-						padding: '25px 0 10px',
-						fontSize: 30,
-						margin: 0,
-						fontWeight: 300,
-						lineHeight: 1,
-					}}
-				>
-					Get ready for
-				</h2>
-				<h1
-					style={{
-						fontSize: 80,
-						margin: 0,
-						lineHeight: 1,
-						padding: '0 0 10px',
-					}}
-				>
-					Hero
-				</h1>
-				<Paragraph
-					style={{
-						fontStyle: 'italic',
-						fontSize: 14,
-						margin: 0,
-						lineHeight: 1.5,
-						padding: '20px 0 50px',
-					}}
-				>
-					it seems like hundreds of new iWatch apps pop up every week, but which
-					ones should you bother trying?
-				</Paragraph>
-				<Link
-					href='#'
-					className='ghost-btn'
-					style={{
-						fontSize: 12,
-						borderRadius: 3,
-						border: '2px solid white',
-						textDecoration: 'none',
-						color: 'white',
-						padding: '10px 15px',
-						textTransform: 'uppercase',
-					}}
-				>
-					Learn More
-				</Link>
-			</td>
-			<style global jsx>{`
-				@media only screen and (min-width: 960px) {
-					.main-header-left {
-						padding: 36px 50px 70px !important;
-					}
-				}
-				@media only screen and (max-width: 600px) {
-					.main-header-left {
-						width: 100%;
-					}
-				}
-			`}</style>
-		</Table>
-	);
-};
-const MainHeaderRowHeaderRight = () => {
-	return (
-		<Table className='main-header-right' align='right' width='50%' trs>
-			<td>
-				<Table
-					width='100%'
-					align='center'
-					style={{ padding: 20 }}
-					className='menu-table'
-					tr={{
-						className: 'header',
-						style: {
-							...fontColorSpecial,
-							fontSize: 14,
-							fontWeight: 600,
-						},
-					}}
-				>
-					{[
-						{ text: 'About', href: '#' },
-						{ text: 'Careers', href: '#' },
-						{ text: 'Contact', href: '#' },
-					].map(({ href, text }) => (
-						<td align='center' key={text}>
-							<Link href={href}>{text}</Link>
-						</td>
-					))}
-				</Table>
-			</td>
-			<td
-				align='center'
-				valign='bottom'
-				style={{
-					padding: '16px 16px 0 16px',
-				}}
-			>
-				<Image
-					src='./images/smartwatch.png'
-					alt='image of apple watch'
-					style={{ position: 'relative', bottom: -4 }}
-				/>
-			</td>
-			<style global jsx>{`
-				@media (prefers-color-scheme: dark) {
-					.main-header-right .header {
-						color: white !important;
-					}
-				}
-				@media only screen and (max-width: 600px) {
-					.main-header-right {
-						width: 100%;
-					}
-				}
-			`}</style>
-		</Table>
-	);
-};
 const MainHeaderRow = () => {
 	return (
-		<>
-			<MainHeaderRowHeaderLeft />
-			<MainHeaderRowHeaderRight />
-		</>
+		<Table className='main-header' align='center' width='100%' tr>
+			<HTMLComment
+				statement={`[if (gte mso 9)|(IE)]>
+			<td width="300" align="center">
+<![endif]`}
+				removeExtraSpaces
+			/>
+			<Td>
+				<Table
+					width='300px'
+					className='main-header-left'
+					align='left'
+					style={{
+						padding: '15px 15px 70px 15px',
+						...backgroundColorImageSpecial,
+					}}
+					// width='100%'
+					tr
+				>
+					<td
+						style={{
+							color: 'white',
+							...fontFamily1,
+						}}
+					>
+						<Img src='./images/logo.png' alt='logo' />
+						<h2
+							style={{
+								padding: '25px 0 10px',
+								fontSize: 30,
+								margin: 0,
+								fontWeight: 300,
+								lineHeight: 1,
+							}}
+						>
+							Get ready for
+						</h2>
+						<h1
+							style={{
+								fontSize: 80,
+								margin: 0,
+								lineHeight: 1,
+								padding: '0 0 10px',
+							}}
+						>
+							Hero
+						</h1>
+						<P
+							style={{
+								fontStyle: 'italic',
+								fontSize: 14,
+								margin: 0,
+								lineHeight: 1.5,
+								padding: '20px 0 50px',
+							}}
+						>
+							it seems like hundreds of new iWatch apps pop up every week, but
+							which ones should you bother trying?
+						</P>
+						<A
+							href='#'
+							className='ghost-btn'
+							style={{
+								fontSize: 12,
+								borderRadius: 3,
+								border: '2px solid white',
+								textDecoration: 'none',
+								color: 'white',
+								padding: '10px 15px',
+								textTransform: 'uppercase',
+							}}
+						>
+							Learn More
+						</A>
+					</td>
+					<style global jsx>{`
+						@media only screen and (min-width: 960px) {
+							.main-header-left {
+								width: 50% !important;
+								padding: 36px 50px 70px !important;
+							}
+						}
+						@media only screen and (max-width: 600px) {
+							.main-header-left {
+								width: 100%;
+							}
+						}
+					`}</style>
+				</Table>
+				{/* </Td> */}
+				<HTMLComment
+					statement={`[if (gte mso 9)|(IE)]>
+						</td>
+						<![endif]`}
+					removeExtraSpaces
+				/>
+
+				<HTMLComment
+					statement={`[if (gte mso 9)|(IE)]>
+				<td width="300" align="center">
+ <![endif]`}
+					removeExtraSpaces
+				/>
+				{/* <Td
+			> */}
+				<Table width='300px' className='main-header-right' align='right' trs>
+					<td>
+						<Table
+							width='100%'
+							align='center'
+							style={{ padding: 20 }}
+							className='menu-table'
+							tr={{
+								className: 'header',
+								style: {
+									...fontColorSpecial,
+									fontSize: 14,
+									fontWeight: 600,
+								},
+							}}
+						>
+							{[
+								{ text: 'About', href: '#' },
+								{ text: 'Careers', href: '#' },
+								{ text: 'Contact', href: '#' },
+							].map(({ href, text }) => (
+								<td align='center' key={text}>
+									<A href={href}>{text}</A>
+								</td>
+							))}
+						</Table>
+					</td>
+					<td
+						align='center'
+						valign='bottom'
+						style={{
+							padding: '16px 16px 0 16px',
+						}}
+					>
+						<Img
+							src='./images/smartwatch.png'
+							alt='image of apple watch'
+							style={{ position: 'relative', bottom: -4 }}
+						/>
+					</td>
+					<style global jsx>{`
+						@media (prefers-color-scheme: dark) {
+							.main-header-right .header {
+								color: white !important;
+							}
+						}
+						@media only screen and (min-width: 960px) {
+							.main-header-right {
+								width: 50% !important;
+							}
+						}
+						@media only screen and (max-width: 600px) {
+							.main-header-right {
+								width: 100%;
+							}
+						}
+					`}</style>
+				</Table>
+			</Td>
+			<HTMLComment
+				statement={`[if (gte mso 9)|(IE)]>
+						</td>
+						<![endif]`}
+				removeExtraSpaces
+			/>
+		</Table>
 	);
 };
 
 const LetsYouRow = () => {
 	return (
 		<Table
-			trs
 			width='100%'
 			className='lets-you-row'
 			style={{
 				...backgroundColorSpecial,
 				color: '#333333',
-				padding: '0 15px',
 			}}
 		>
-			<td align='center'>
+			<td
+				align='center'
+				style={{
+					textAlign: 'center',
+				}}
+			>
 				<h3
 					style={{
 						...fontFamily1,
@@ -263,22 +288,34 @@ const LetsYouRow = () => {
 						},
 					},
 				].map(({ mainTable, header, body }, index) => (
-					<Table
-						key={index}
-						className={`${mainTable.className} column`}
-						// width='33.33%'
-						align='left'
-						width='33.33%'
-						style={{
-							padding: '15px 15px 70px 15px',
-						}}
-						trs
-					>
-						<td>
-							<Table align='left' className='title-icon' style={{ padding: 0 }}>
-								<tr>
+					<>
+						<HTMLComment
+							statement={`[if (gte mso 9)|(IE)]>
+			<td width="200" align="center">
+<![endif]`}
+							removeExtraSpaces
+						/>
+						<Table
+							key={index}
+							className={`${mainTable.className} column`}
+							// width='33.33%'
+							align='left'
+							// width='33.33%'
+							style={{
+								padding: '15px 15px 70px 15px',
+								width: '100%',
+								maxWidth: 200,
+							}}
+						>
+							<td>
+								<Table
+									align='left'
+									className='title-icon'
+									style={{ padding: 0 }}
+									tr
+								>
 									<td className='icon-holder'>
-										<Image src={header.icon.src} alt={header.icon.alt} />
+										<Img src={header.icon.src} alt={header.icon.alt} />
 									</td>
 									<td
 										className='text-holder'
@@ -291,36 +328,42 @@ const LetsYouRow = () => {
 									>
 										{header.text}
 									</td>
-								</tr>
-							</Table>
+								</Table>
+							</td>
+							<td>
+								<p
+									style={{
+										color: '#7f8887',
+										fontWeight: 400,
+										lineHeight: 1.8,
+										fontSize: 14,
+										marginTop: 0,
+									}}
+								>
+									{body.paragraph}
+								</p>
+							</td>
+							<td>
+								<A
+									href={body.link.href}
+									style={{
+										color: '#2792ec',
+										textDecoration: 'none',
+										fontWeight: 600,
+										fontSize: 14,
+									}}
+								>
+									{body.link.text}
+								</A>
+							</td>
+						</Table>
+						<HTMLComment
+							statement={`[if (gte mso 9)|(IE)]>
 						</td>
-						<td>
-							<p
-								style={{
-									color: '#7f8887',
-									fontWeight: 400,
-									lineHeight: 1.8,
-									fontSize: 14,
-									marginTop: 0,
-								}}
-							>
-								{body.paragraph}
-							</p>
-						</td>
-						<td>
-							<Link
-								href={body.link.href}
-								style={{
-									color: '#2792ec',
-									textDecoration: 'none',
-									fontWeight: 600,
-									fontSize: 14,
-								}}
-							>
-								{body.link.text}
-							</Link>
-						</td>
-					</Table>
+						<![endif]`}
+							removeExtraSpaces
+						/>
+					</>
 				))}
 			</td>
 			<style global jsx>{`
@@ -328,6 +371,9 @@ const LetsYouRow = () => {
 					.lets-you-row {
 						color: white !important;
 						background-color: #141414 !important;
+					}
+					.lets-you-row .column {
+						max-width: 33.33% !important;
 					}
 				}
 				@media only screen and (min-width: 960px) {
@@ -345,7 +391,7 @@ const LetsYouRow = () => {
 						fontweight: 500 !important;
 					}
 					.lets-you-row .column {
-						width: 100%;
+						max-width: 100% !important;
 						text-align: center;
 						padding: 25px !important;
 					}
@@ -380,7 +426,7 @@ const AdvanceRow = () => {
 				}}
 				align='center'
 			>
-				<Image
+				<Img
 					src='./images/image_head.jpg'
 					alt='image head'
 					className='model with apple watch image_head'
@@ -418,7 +464,7 @@ const AdvanceRow = () => {
 				>
 					<tr className='text-holder'>
 						<td>
-							<Paragraph
+							<P
 								style={{
 									color: '#7f8887',
 									fontWeight: 400,
@@ -429,12 +475,12 @@ const AdvanceRow = () => {
 							>
 								The Strong museum has collected more than 55,000 video games and
 								related artifacts from the history of gaming.
-							</Paragraph>
+							</P>
 						</td>
 					</tr>
 					<tr className='left-store store' style={{ textAlign: 'right' }}>
 						<td>
-							<Image src='./images/appstore.png' alt='logo of apple appstore' />
+							<Img src='./images/appstore.png' alt='logo of apple appstore' />
 						</td>
 					</tr>
 				</Table>
@@ -448,7 +494,7 @@ const AdvanceRow = () => {
 				>
 					<tr className='text-holder'>
 						<td>
-							<Paragraph
+							<P
 								style={{
 									color: '#7f8887',
 									fontWeight: 400,
@@ -459,12 +505,12 @@ const AdvanceRow = () => {
 							>
 								The Strong museum has collected more than 55,000 video games and
 								related artifacts from the history of gaming.
-							</Paragraph>
+							</P>
 						</td>
 					</tr>
 					<tr className='right-store store' style={{ textAlign: 'left' }}>
 						<td>
-							<Image
+							<Img
 								src='./images/playstore.png'
 								alt='logo for android playstore'
 							/>
@@ -521,7 +567,7 @@ const OneSolutionRow = () => {
 			tr
 		>
 			<td>
-				<Image
+				<Img
 					src='./images/one_app.jpg'
 					alt='information for application'
 					style={{
@@ -628,7 +674,7 @@ const JoinTogetherRow = () => {
 						trs
 					>
 						<td align='center'>
-							<Image src={image.src} alt={image.alt} />
+							<Img src={image.src} alt={image.alt} />
 						</td>
 						<td align='center'>
 							<h5
@@ -645,7 +691,7 @@ const JoinTogetherRow = () => {
 							</h5>
 						</td>
 						<td align='center'>
-							<Paragraph
+							<P
 								style={{
 									color: '#7f8887',
 									fontWeight: 400,
@@ -655,10 +701,10 @@ const JoinTogetherRow = () => {
 								}}
 							>
 								Computer manufacturer Lenovo is getting flak.
-							</Paragraph>
+							</P>
 						</td>
 						<td align='center'>
-							<Link
+							<A
 								href={link.href}
 								style={{
 									color: '#2792ec',
@@ -667,7 +713,7 @@ const JoinTogetherRow = () => {
 								}}
 							>
 								{link.text}
-							</Link>
+							</A>
 						</td>
 					</Table>
 				))}
@@ -810,10 +856,7 @@ const DetailRow = () => {
 													tr
 												>
 													<td>
-														<Image
-															src={header.icon.src}
-															alt={header.icon.alt}
-														/>
+														<Img src={header.icon.src} alt={header.icon.alt} />
 													</td>
 													<td
 														style={{
@@ -830,7 +873,7 @@ const DetailRow = () => {
 												</Table>
 											</td>
 											<td>
-												<Paragraph
+												<P
 													style={{
 														color: '#7f8887',
 														fontWeight: 400,
@@ -839,7 +882,7 @@ const DetailRow = () => {
 													}}
 												>
 													{body.text}
-												</Paragraph>
+												</P>
 											</td>
 										</Table>
 									</td>
@@ -908,7 +951,7 @@ const InterestRow = () => {
 				>
 					Interested in our App?
 				</h3>
-				<Paragraph
+				<P
 					style={{
 						fontStyle: 'italic',
 						fontSize: 14,
@@ -920,8 +963,8 @@ const InterestRow = () => {
 				>
 					Muriel Bowser’s administration says move is unrelated to charges that
 					encryption caused failures in Metro.
-				</Paragraph>
-				<Link
+				</P>
+				<A
 					href='#'
 					style={{
 						borderRadius: 2,
@@ -935,7 +978,7 @@ const InterestRow = () => {
 					}}
 				>
 					request a quote
-				</Link>
+				</A>
 			</td>
 		</Table>
 	);
@@ -975,43 +1018,37 @@ const FooterRow = () => {
 						tr
 					>
 						<td align='center'>
-							<Link href='http://www.twitter.com/'>
-								<Image src='./images/twitter_icon.png' alt='twitter.com icon' />
-							</Link>
+							<A href='http://www.twitter.com/'>
+								<Img src='./images/twitter_icon.png' alt='twitter.com icon' />
+							</A>
 						</td>
 						<td align='center'>
-							<Link href='http://www.facebook.com/'>
-								<Image
-									src='./images/facebook_icon.png'
-									alt='facebook.com icon'
-								/>
-							</Link>
+							<A href='http://www.facebook.com/'>
+								<Img src='./images/facebook_icon.png' alt='facebook.com icon' />
+							</A>
 						</td>
 						<td align='center'>
-							<Link href='http://www.google.com/'>
-								<Image src='./images/google_icon.png' alt='google.com icon' />
-							</Link>
+							<A href='http://www.google.com/'>
+								<Img src='./images/google_icon.png' alt='google.com icon' />
+							</A>
 						</td>
 						<td align='center'>
-							<Link href='http://www.pinterest.com/'>
-								<Image
+							<A href='http://www.pinterest.com/'>
+								<Img
 									src='./images/pinterest_icon.png'
 									alt='pinterest.com icon'
 								/>
-							</Link>
+							</A>
 						</td>
 						<td align='center'>
-							<Link href='http://www.linkedin.com/'>
-								<Image
-									src='./images/linkedin_icon.png'
-									alt='linkedin.com icon'
-								/>
-							</Link>
+							<A href='http://www.linkedin.com/'>
+								<Img src='./images/linkedin_icon.png' alt='linkedin.com icon' />
+							</A>
 						</td>
 						<td align='center'>
-							<Link href='http://www.youtube.com/'>
-								<Image src='./images/youtube_icon.png' alt='youtube.com icon' />
-							</Link>
+							<A href='http://www.youtube.com/'>
+								<Img src='./images/youtube_icon.png' alt='youtube.com icon' />
+							</A>
 						</td>
 					</Table>
 				</td>
@@ -1029,9 +1066,9 @@ const FooterRow = () => {
 					>
 						&copy; 20XX All rights Reserved - YourCompany. Is your inbox
 						overflowing?
-						<Link href='#' style={{ color: '#2792ec' }}>
+						<A href='#' style={{ color: '#2792ec' }}>
 							Unsubscribe
-						</Link>
+						</A>
 					</p>
 				</td>
 			</tr>

@@ -5,9 +5,14 @@ import {
 	JSXElementConstructor,
 	ReactElement,
 	ReactFragment,
+	ReactNode,
 	ReactPortal,
 	TableHTMLAttributes,
 } from 'react';
+import { useSharedConfig } from '../../context';
+import { combineSimilarProps } from '../../utils';
+import Tr from '../Tr';
+import Trs from '../Trs';
 
 interface ITableProps extends TableHTMLAttributes<HTMLTableElement> {
 	children?:
@@ -21,91 +26,39 @@ interface ITableProps extends TableHTMLAttributes<HTMLTableElement> {
 		| null
 		| undefined;
 	tr?: boolean | HTMLAttributes<HTMLTableRowElement>;
-	trs?: boolean;
+	trs?: boolean | HTMLAttributes<HTMLTableRowElement>;
 }
 
-const Table: FC<ITableProps> = ({
-	children,
-	style,
-	cellSpacing,
-	cellPadding,
-	tr,
-	trs,
-	...props
-}) => {
-	const tableStyles: CSSProperties = {
-		margin: 0,
-		padding: 0,
-		border: 0,
-		...(style || {}),
-	};
+const Table: FC<ITableProps> = ({ children, tr, trs = true, ...props }) => {
+	const [
+		{
+			components: { Table: tableComponentDefaults },
+		},
+	] = useSharedConfig();
 
 	const renderBasedOnElementType = () => {
-		if (!tr && Array.isArray(children)) {
+		if (!tr && trs) {
+			if (Array.isArray(children))
+				return (
+					<tbody>
+						<Trs tr={(typeof trs === 'object' && trs) || {}}>{children}</Trs>
+					</tbody>
+				);
+		}
+
+		if (tr || (trs && !Array.isArray(children))) {
 			return (
 				<tbody>
-					{children.map((child, index) => {
-						if (child.type === 'tr' || child.type === 'style') return child;
-
-						return (
-							<tr
-								key={child?.key || index}
-								{...((typeof tr === 'object' && tr) || {})}
-							>
-								{trs && child?.type === 'td' ? child : <td>{child}</td>}
-							</tr>
-						);
-					})}
+					<Tr {...((typeof trs === 'object' && trs) || {})}>{children}</Tr>
 				</tbody>
 			);
 		}
 
-		const handleWrappingInTr = (
-			children:
-				| ReactFragment
-				| ReactElement<any, string | JSXElementConstructor<any>>
-				| ReactPortal
-				| JSX.Element
-		) => {
-			if (
-				'type' in children &&
-				(children.type === 'tr' || children.type === 'style')
-			)
-				return children;
-			if (tr)
-				return <tr {...((typeof tr === 'object' && tr) || {})}>{children}</tr>;
-			return children;
-		};
-
-		if (
-			!children ||
-			typeof children === 'string' ||
-			typeof children === 'number' ||
-			typeof children === 'boolean'
-		)
-			return (
-				<tbody>
-					<tr {...((typeof tr === 'object' && tr) || {})}>
-						<td>{children}</td>
-					</tr>
-				</tbody>
-			);
-
-		if (
-			'type' in children &&
-			['tfoot', 'thead', 'tbody'].includes(children?.type)
-		)
-			return children;
-
-		return <tbody>{handleWrappingInTr(children)}</tbody>;
+		return children;
 	};
+
 	return (
-		<table
-			cellSpacing={cellSpacing || 0}
-			cellPadding={cellPadding || 0}
-			style={tableStyles}
-			{...props}
-		>
+		<table {...combineSimilarProps(tableComponentDefaults, props)}>
 			{renderBasedOnElementType()}
 		</table>
 	);
